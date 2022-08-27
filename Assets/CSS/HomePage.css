@@ -1,43 +1,48 @@
-body
-{
-    background-color: darkslategray;
-}
+
 head
 {
-    color: mistyrose;
-    text-align: center;
+
+    color: powderblue;
     border-style: dashed;
     border-color: azure;
 }
 h1
 {
-    text-align: center;
+
+    color: powderblue;
+    font-size: xxx-large;
     border-style: double;
     border-color: white;
-    background-color: darkgrey;
 }
 p
 {
+
     color: mistyrose;
-    text-align: center;
     border-style: dot-dash;
     border-color: lightblue;
 }
 div
 {
+
     color: mistyrose;
-    text-align: center;
     border-style: dot-dash;
     border-color: lightblue;
 }
 body
 {
-    background-image: url('../StockImages/photos_2017_9_25_fst_bokeh-lights-surface-wet.jpg');
+    background-color: slategrey;
+    text-align: center;
+    font-family: Broadway;
+    background-image: url('../StockImages/photos_2018_2_14_fst_blurry-bokeh-hearts.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 label
 {
-    background-color: lightblue;
-    color: darkslategray;
+
+
+    opacity: 0.4;
+    color: lightpink;
     font-size: xx-large;
     border-style: inset;
     border-color: black;
@@ -46,8 +51,10 @@ label
 }
 a
 {
+
+    opacity: 0.4;
+    color: darkslateblue;
     font-size: xx-large;
-    background-color: blanchedalmond;
     border-style: inset;
     border-color: black;
     border-width: thick;
