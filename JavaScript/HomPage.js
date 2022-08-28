@@ -110,6 +110,7 @@ function GetData()
             return "Right now I am Most Likely: " + times[i].name;
         }
     }
+    return "No Activity Found!";
 }
 GetData();
-//document.getElementById("WhatImDoing").innerHTML = GetData();
+document.getElementById("WhatImDoing").innerHTML = GetData();
