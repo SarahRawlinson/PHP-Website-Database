@@ -1,0 +1,61 @@
+INSERT INTO `project` (`id`, `project_name`, `git_directory`, `details`, `key_words`)
+VALUES
+(
+    NULL,
+    'PHP-Website-Database',
+    'https://github.com/SarahRawlinson/PHP-Website-Database',
+    'PHP-Website-Database\r\nThis project is to help me learn PHP. \r\nI have started by creating a home page and a
+        page for some of my past projects. \r\nI intend to implement some work with a SQL database.',
+    'PHP, Website, HTML, SQL'
+),
+(
+    NULL,
+    'VB.NET-playground',
+    'https://github.com/SarahRawlinson/VB.NET-playground',
+    'VB.NET Tech.io playground\r\nThis playground was designed to train colleagues in VBA. \r\nAlthough this is a
+        VB.NET environment most code is interchangeable with VBA.\r\nLink to playground:
+        https://tech.io/playgrounds/fb08c09e6bf5122f8ab05fb50839ca7161608/sarahs-vb-net-playground',
+    'VB.NET, VBA, Tech.io, Playground'
+),
+(
+    NULL,
+    'Texas_Holdem_Poker',
+    'https://github.com/SarahRawlinson/Texas_Holdem_Poker',
+    'Texas Holdem Poker\r\nPython Game project.\r\n\r\nPlay with 2-5 AI players\r\n\r\nFirst attempt with unit tests
+        and AI.\r\nPackages uses include (tkinter, PIL)',
+    'Python, Poker, Texas Holdem, PIL, tkinter, AI'
+),
+(
+    NULL,
+    'C-Sharp-Patterns-and-UML',
+    'https://github.com/SarahRawlinson/C-Sharp-Patterns-and-UML',
+    'C# Patterns and UML\r\nLeaning and trying to implement C# patterns and then drawing UML representations of the
+        code.\r\nPatterns: \r\nFactory Pattern\r\nSingleton Pattern',
+    'UML, C#, Patterns, Design, Factory, Singleton'
+),
+(
+    NULL,
+    'CodingMovementGeneticAlgorithm',
+    'https://github.com/SarahRawlinson/CodingMovementGeneticAlgorithm',
+    'Coding Movement Genetic Algorithm\r\nThis Unity project was created to learn genetic algorithms and has evolved
+        to include a level editor.',
+    'C#, Unity, ML, Genetic Algorithm, Level Editor, Movement, AI, Training, Mutation'
+),
+(
+    NULL,
+    'Unity-Code',
+    'https://github.com/SarahRawlinson/Unity-Code',
+    'Unity Code\r\nThis repository includes some of my unity code from past projects, this does not include any assets.
+        \r\nProjects: \r\nRPG Project\r\nMultiplayer Project',
+    'Scripts, Unity Projects, Multiplayer, C#, RPG, Networking, UI, Mini Map, Events, Steam API, Mirror'
+),
+(
+    NULL,
+    'ChessLikeGame',
+    'https://github.com/SarahRawlinson/ChessLikeGame',
+    'Chess Like Game\r\nThis project was made to for my first game jam, not very original but the whole game was
+        implemented within 7 days.\r\nNot all rules of chess apply and the AI is limited but I am still happy with
+        the results.\r\nitch.iO link: https://srrawlinsonhotmailcouk.itch.io/chess-kind-of\r\nyou can play this game
+        in a web browser by using the link above.',
+    'Chess, C#, Unity, AI'
+)

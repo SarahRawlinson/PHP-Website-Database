@@ -14,6 +14,13 @@ h1
     border-style: double;
     border-color: white;
 }
+h2
+{
+
+    color: powderblue;
+    font-size: larger;
+
+}
 p
 {
 
@@ -52,9 +59,10 @@ label
 a
 {
 
-    opacity: 0.4;
+    opacity: 0.7;
+    background-color: black;
     color: blueviolet;
-    font-size: xx-large;
+    font-size: large;
     border-style: inset;
     border-color: black;
     border-width: thick;

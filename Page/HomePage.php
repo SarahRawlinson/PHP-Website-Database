@@ -23,6 +23,7 @@ $name = "Sarah Rawlinson";
     <a href="<?php echo $gitHubLink ?>">GitHub</a><br><br>
 
 <h2><a href="MyGames.php">My Games</a></h2>
+<h2><a href="MyProjects.php">My Projects</a></h2>
 
 </body>
 
