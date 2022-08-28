@@ -90,13 +90,16 @@ let inBed = new Time("In Bed", asleep, wakeUp,"")
 
 
 let i = 0;
+let count = 0;
 times = [wakeUpTime, startedWork, onLunch, backToWorkAgain, startProgramming, startGaming, startWatchingTV, inBed];
 let match = false;
 
 function GetData()
 {
-    while (!match)
+
+    while (!match && count < times.length * 2)
     {
+        count++;
         i++;
         i=i>times.length-1?0:i;
         match = times[i].compare(new Date());
@@ -108,4 +111,5 @@ function GetData()
         }
     }
 }
-document.getElementById("WhatImDoing").innerHTML = GetData();
+GetData();
+//document.getElementById("WhatImDoing").innerHTML = GetData();
