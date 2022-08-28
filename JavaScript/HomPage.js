@@ -11,9 +11,9 @@ class Time
     }
     compare(object)
     {
-        if (this.startTime.getHours() < this.endTime.getHours())
+        if (this.startTime.getTime() < this.endTime.getTime())
         {
-            return object.getHours() > this.startTime.getHours() && object.getHours() < this.endTime.getHours();
+            return object.getTime() > this.startTime.getTime() && object.getTime() < this.endTime.getTime();
         }
         else
         {
@@ -21,8 +21,8 @@ class Time
             newEnd.setHours(23,59,59);
             let newStart = new Date();
             newStart.setHours(0);
-            return (object.getHours() > this.startTime.getHours() && object.getHours() < newEnd.getHours())
-                || (object.getHours() > newStart.getHours() && object.getHours() < this.endTime.getHours());
+            return (object.getTime() > this.startTime.getTime() && object.getTime() < newEnd.getTime())
+                || (object.getTime() > newStart.getTime() && object.getTime() < this.endTime.getTime());
         }
 
     }
@@ -80,7 +80,7 @@ gaming.setHours(20,0);
 let startGaming = new Time("Gaming", gaming, watchingTV,"")
 
 let asleep = new Date();
-asleep.setHours(0,0);
+asleep.setHours(11,30);
 
 let startWatchingTV = new Time("Watching TV", watchingTV, asleep,"")
 
@@ -107,10 +107,12 @@ function GetData()
         if (match)
         {
             console.log(times[i].name)
-            return "Right now I am Most Likely: " + times[i].name;
+            t = new Date();
+            return "Right now ( " +t.getHours() + " : " + t.getMinutes() + " ) I am Most Likely: " + times[i].name;
         }
     }
+    console.log("Error, could not find in loop, check activities or calculation")
     return "No Activity Found!";
 }
-GetData();
+//console.log(GetData());
 document.getElementById("WhatImDoing").innerHTML = GetData();
