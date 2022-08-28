@@ -4,6 +4,7 @@ $youTubeLink = "https://www.youtube.com/channel/UCZzctauCe1sxTTCsK93Tlmw";
 $itchLink = "https://sarahrawlinson.itch.io/";
 $gitHubLink = "https://github.com/SarahRawlinson";
 $name = "Sarah Rawlinson";
+//<script src="../JavaScript/HomPage.js">
 
 ?>
 
@@ -24,6 +25,10 @@ $name = "Sarah Rawlinson";
 
 <h2><a href="MyGames.php">My Games</a></h2>
 <h2><a href="MyProjects.php">My Projects</a></h2>
+<br><br><br>
+<h2 id="WhatImDoing"></h2>
+<script src="../JavaScript/HomPage.js">
+</script>
 
 </body>
 
