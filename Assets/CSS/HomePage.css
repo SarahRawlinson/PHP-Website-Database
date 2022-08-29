@@ -21,6 +21,19 @@ h2
     font-size: larger;
 
 }
+.validation label
+{
+
+    background-color: red;
+}
+.validation textarea
+{
+
+    background-color: lightpink;
+    border: red;
+    border-style: double;
+    border-width: thick;
+}
 p
 {
 
@@ -28,13 +41,7 @@ p
     border-style: dot-dash;
     border-color: lightblue;
 }
-div
-{
 
-    color: mistyrose;
-    border-style: dot-dash;
-    border-color: lightblue;
-}
 body
 {
     background-color: slategrey;

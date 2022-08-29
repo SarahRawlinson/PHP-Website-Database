@@ -1,8 +1,10 @@
 <?php
 
+include "../Assets/PHPScripts/Include.php";
 $val = "<pre>";
-$val .= print_r($_POST, true);
+$val .= print_r($_SESSION['formData'], true);
 $val .= "</pre>";
+$formData = $_SESSION['formData'];
 
 ?>
 
@@ -16,7 +18,13 @@ $val .= "</pre>";
 <div id="Header">
     <h1>Display Form</h1>
     <h2><a href="HomePage.php">Back Home</a></h2>
-    <h2><?php echo $val ?></h2>
+    <label for="lname" >Name:</label> <label><?=$formData['iname']?></label> <br><br>
+    <label for="lemail" >Email:</label> <label><?=$formData['iemail']?></label>  <br><br>
+    <label for="lcontact" >Contact Me:</label><br><br>
+    <label><?=$formData['icontact']?></label><br><br>
+    <label for="lcomment" >Comments:</label><br><br>
+    <label><?=$formData['icomments']?></label>
+<!--    <h2>--><?php //echo $val ?><!--</h2>-->
 
 
 </div>
