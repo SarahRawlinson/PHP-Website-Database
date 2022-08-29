@@ -1,7 +1,7 @@
 <?php
 
 $val = "<pre>";
-$val .= print_r($_GET, true);
+$val .= print_r($_POST, true);
 $val .= "</pre>";
 
 ?>
