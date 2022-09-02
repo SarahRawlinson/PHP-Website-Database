@@ -8,3 +8,7 @@ CREATE TABLE `my_projects`.`project`
     PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB;
+
+ALTER TABLE project
+add CONSTRAINT directory_unique UNIQUE (git_directory),
+add CONSTRAINT details_unique UNIQUE (details);

@@ -1,0 +1,14 @@
+INSERT INTO `project_languages` (`id`, `project_id`, `language_id`)
+VALUES
+(NULL, '1', '1'),
+(NULL, '1', '4'),
+(NULL, '1', '6'),
+(NULL, '1', '7'),
+(NULL, '1', '8'),
+(NULL, '2', '3'),
+(NULL, '2', '14'),
+(NULL, '3', '5'),
+(NULL, '4', '2'),
+(NULL, '5', '2'),
+(NULL, '6', '2'),
+(NULL, '7', '2');

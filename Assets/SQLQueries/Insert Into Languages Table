@@ -1,0 +1,58 @@
+INSERT INTO languages (id, language)
+VALUES
+(
+    NULL,
+    'PHP'
+),
+(
+    NULL,
+    'C#'
+),
+(
+    NULL,
+    'VBA'
+),
+(
+    NULL,
+    'JavaScript'
+),
+(
+    NULL,
+    'Python'
+),
+(
+    NULL,
+    'CSS'
+),
+(
+    NULL,
+    'HTML'
+),
+(
+    NULL,
+    'SQL'
+),
+(
+    NULL,
+    'Java'
+),
+(
+    NULL,
+    'R'
+),
+(
+    NULL,
+    'C'
+),
+(
+    NULL,
+    'C++'
+),
+(
+    NULL,
+    'Swift'
+),
+(
+    NULL,
+    'VB.NET'
+);

@@ -8,6 +8,7 @@ class DatabaseConnection
     {
         //echo "Database->CreateInstance()".PHP_EOL;
         DatabaseConnection::$instance = new DatabaseConnection();
+        //update the connection string for your own database
         DatabaseConnection::$instance->Connect(User::$pass,User::$user,User::$host,"my_projects");
         return self::$instance;
     }
@@ -15,6 +16,12 @@ class DatabaseConnection
     public function GetProjectsQuery(): string
     {
         return "SELECT id, project_name, git_directory, details, key_words FROM project ORDER BY project_name ASC ";
+    }
+
+    public function GetProjectsQueryByLanguage($language): string
+    {
+        return "SELECT * FROM project WHERE id IN ( SELECT project_id from project_languages WHERE 
+                                            language_id IN ( SELECT id from languages WHERE language = '$language' ) ); ";
     }
 
     public function RunQuery($query): void
@@ -31,7 +38,7 @@ class DatabaseConnection
     {
         $this->Open();
         $tempFirstName = "";
-        $result = $this->connection->prepare($this->GetProjectsQuery());
+        $result = $this->connection->prepare($this->GetProjectsQueryByLanguage("C#"));
         //$result->bind_param("s", $tempFirstName);
         $result->execute();
         $id = 0;

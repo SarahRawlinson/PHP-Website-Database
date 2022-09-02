@@ -1,10 +1,21 @@
 <?php
 
 include "../Assets/PHPScripts/Include.php";
-$val = "<pre>";
-$val .= print_r($_SESSION['formData'], true);
-$val .= "</pre>";
-$formData = $_SESSION['formData'];
+//$val = "<pre>";
+//$val .= print_r($_SESSION['formData'], true);
+//$val .= "</pre>";
+
+if (isset($_SESSION['formData']))
+{
+    $formData = $_SESSION['formData'];
+    //session_destroy(); //will kill all session details not recommended in this instance
+    unset($_SESSION['formData']);
+}
+else
+{
+    header('Location: Form.php');
+}
+
 
 ?>
 
