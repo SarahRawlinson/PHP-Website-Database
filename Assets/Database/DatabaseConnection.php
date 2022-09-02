@@ -23,8 +23,13 @@ class DatabaseConnection
 
     private function GetProjectsQueryByLanguage($language): string
     {
-        return "SELECT * FROM project WHERE id IN ( SELECT project_id from project_languages WHERE 
+        if (in_array($language,$this->GetLanguages(), true))
+        {
+            return "SELECT * FROM project WHERE id IN ( SELECT project_id from project_languages WHERE 
                                 language_id IN ( SELECT id from languages WHERE language = '$language' ) ); ";
+        }
+        return $this->GetProjectsQuery();
+
     }
 
     private function GetLanguagesQuery(): string
@@ -32,7 +37,7 @@ class DatabaseConnection
         return "SELECT language FROM languages; ";
     }
 
-    public function GetLanguages()
+    public function GetLanguages(): array
     {
         return $this->ReturnQueryResult($this->GetLanguagesQuery());
     }
@@ -60,7 +65,7 @@ class DatabaseConnection
 
     public function GetProjectsByLanguage($language): string
     {
-        return $this->GetProjects($this->GetProjectsQueryByLanguage("C#"));
+        return $this->GetProjects($this->GetProjectsQueryByLanguage($language));
     }
 
     public function GetProjectsAll(): string
