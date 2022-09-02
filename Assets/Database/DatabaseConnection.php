@@ -27,14 +27,35 @@ class DatabaseConnection
                                 language_id IN ( SELECT id from languages WHERE language = '$language' ) ); ";
     }
 
+    private function GetLanguagesQuery(): string
+    {
+        return "SELECT language FROM languages; ";
+    }
+
+    public function GetLanguages()
+    {
+        return $this->ReturnQueryResult($this->GetLanguagesQuery());
+    }
+
+
     private function RunQuery($query): void
     {
         $this->connection->query($query);
     }
 
-    private function ReturnQueryResult($query)
+    private function ReturnQueryResult($query): array
     {
-        return $this->connection->query($query);
+        $this->Open();
+        $lang_array = [];
+        $result = $this->connection->query($query);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $lang_array[] = $row['language'];
+            }
+        }
+        $this->Close();
+        return $lang_array;
+
     }
 
     public function GetProjectsByLanguage($language): string

@@ -1,5 +1,5 @@
 <?php
-require '../Database/DatabaseConnection.php';
+require '../Assets/Database/DatabaseConnection.php';
 $dbConnect = DatabaseConnection::GetInstance();
 $ProjectPageFromDB = "";
 $result = $dbConnect->GetProjectsAll();
