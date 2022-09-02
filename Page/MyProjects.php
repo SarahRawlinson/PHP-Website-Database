@@ -2,7 +2,7 @@
 require '../Database/DatabaseConnection.php';
 $dbConnect = DatabaseConnection::GetInstance();
 $ProjectPageFromDB = "";
-$result = $dbConnect->GetProjects();
+$result = $dbConnect->GetProjectsAll();
 
 ?>
 
