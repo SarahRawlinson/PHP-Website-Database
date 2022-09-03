@@ -1,13 +1,38 @@
 <?php
+include "../Assets/PHPScripts/Include.php";
 require '../Assets/PHPScripts/Tags.php';
 require '../Assets/Database/DatabaseConnection.php';
-include "../Assets/PHPScripts/Include.php";
+
 $dbConnect = DatabaseConnection::GetInstance();
 $ProjectPageFromDB = "";
 $selectedLanguage = "All";
 $selectedFeature = "All";
+$keysForProject = array(Tags::ID, Tags::ProjectName, Tags::Directory, Tags::Details, Tags::Key_Words);
 
-session_destroy();
+if ($_SESSION != null)
+{
+    session_destroy();
+}
+
+function ProjectsToHTML(array $projects) : string
+{
+    $projectsHTMLString = "";
+    for ($i = 0; $i < count($projects); $i++)
+    {
+        $projectName = $projects[$i][Tags::ProjectName];
+        $directory = $projects[$i][Tags::Directory];
+        $keywords = $projects[$i][Tags::Key_Words];
+        $id = $projects[$i][Tags::ID];
+        $details = $projects[$i][Tags::Details];
+
+        $projectsHTMLString .= "<h3>$projectName</h3><br><br><br>";
+        $projectsHTMLString .= "<a href='$directory'>$projectName</a><br><br><br>";
+        $projectsHTMLString .= "<p>$keywords</p><br><br><br>";
+        $projectsHTMLString .= "<p>$details</p><br><br><br>";
+    }
+
+    return  $projectsHTMLString;
+}
 
 if (count($_POST) >0)
 {
@@ -17,17 +42,17 @@ if (count($_POST) >0)
         $_SESSION[Tags::Feature] = $_POST[Tags::Feature];
         $selectedLanguage = $_POST[Tags::Language];
         $selectedFeature = $_POST[Tags::Feature];
-        $result = $dbConnect->GetProjectsByParameters($_POST[Tags::Language], $_POST[Tags::Feature]);
+        $result = ProjectsToHTML($dbConnect->GetProjectsByParameters($_POST[Tags::Language], $_POST[Tags::Feature], $keysForProject));
         $_SESSION[Tags::Projects] = $result;
         echo "post selected";
     }
     else
     {
         echo "missing key";
-        $result = $dbConnect->GetProjectsAll();
+        $result = ProjectsToHTML($dbConnect->GetProjectsAll($keysForProject));
     }
 }
-elseif ($_SESSION[Tags::Projects] != "")
+elseif ($_SESSION != null && $_SESSION[Tags::Projects] != "")
 {
     echo "session selected";
     $result = $_SESSION[Tags::Projects];
@@ -37,7 +62,7 @@ elseif ($_SESSION[Tags::Projects] != "")
 else
 {
     echo "non selected";
-    $result = $dbConnect->GetProjectsAll();
+    $result = ProjectsToHTML($dbConnect->GetProjectsAll($keysForProject));
 }
 $features = $dbConnect->GetFeatures();
 $languages = $dbConnect->GetLanguages();

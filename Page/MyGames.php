@@ -1,4 +1,5 @@
 <?php
+include "../Assets/PHPScripts/Include.php";
 $imageHTML = "";
 $dir = new DirectoryIterator(dirname("../Assets/GamesImages/*"));
 foreach ($dir as $fileinfo) {

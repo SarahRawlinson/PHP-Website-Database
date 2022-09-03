@@ -2,6 +2,7 @@
 require 'SQLQueries.php';
 require 'User.php';
 
+
 class DatabaseConnection
 {
     private static $instance;
@@ -13,10 +14,10 @@ class DatabaseConnection
         return self::$instance;
     }
 
-    public function GetProjectsByParameters(string $language, string $feature): string
+    public function GetProjectsByParameters(string $language, string $feature, array $key): array
     {
         //return SQLQueries::GetProjectsByParametersQuery($language, $feature, $this);
-        return $this->GetProjects(SQLQueries::GetProjectsByParametersQuery($language, $feature, $this));
+        return $this->GetProjects(SQLQueries::GetProjectsByParametersQuery($language, $feature, $this), $key);
     }
 
     public function GetLanguages(): array
@@ -59,36 +60,39 @@ class DatabaseConnection
     }
 
 
-    public function GetProjectsAll(): string
+    public function GetProjectsAll(array $key): array
     {
-        return $this->GetProjects(SQLQueries::GetAllProjectsQuery());
+        return $this->GetProjects(SQLQueries::GetAllProjectsQuery(), $key);
     }
 
-    private function GetProjects(string $query): string
+    private function GetProjects(string $query, array $key): array
     {
         $this->Open();
-        $tempFirstName = "";
         $result = $this->connection->prepare($query);
         //$result->bind_param("s", $tempFirstName);
         $result->execute();
         $id = 0;
-        $projectname = "";
+        $projectName = "";
         $details = "";
         $keywords = "";
         $directory = "";
-        $result->bind_result($id, $projectname, $directory, $details, $keywords);
+        $result->bind_result($id, $projectName, $directory, $details, $keywords);
         $result->store_result();
-        $projectsHTMLString = "";
+        $projectsArray = [[]];
+        $i = 0;
         if ($result->num_rows > 0) {
             while ($result->fetch()) {
-                $projectsHTMLString .= "<h3>$projectname</h3><br><br><br>";
-                $projectsHTMLString .= "<a href='$directory'>$projectname</a><br><br><br>";
-                $projectsHTMLString .= "<p>$keywords</p><br><br><br>";
-                $projectsHTMLString .= "<p>$details</p><br><br><br>";
+
+                $projectsArray[$i][$key[0]] = $id;
+                $projectsArray[$i][$key[1]] = $projectName;
+                $projectsArray[$i][$key[2]] = $directory;
+                $projectsArray[$i][$key[3]] = $details;
+                $projectsArray[$i][$key[4]] = $keywords;
+                $i++;
             }
         }
         $this->Close();
-        return $projectsHTMLString;
+        return $projectsArray;
     }
 
     private function Connect(string $dbPassword, string $dbUserName, string $dbServer, string $dbName): void
