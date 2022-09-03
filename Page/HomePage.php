@@ -16,18 +16,18 @@ $name = "Sarah Rawlinson";
 </head>
 
 <body>
-<h1><?php echo $name."'s Home Page" ?></h1>
+<h1><?php echo $name."'s Home Page" ?></h1><br>
 
-    <h2>Links</h2>
-    <a href="<?php echo $youTubeLink ?>">YouTube</a><br><br>
-    <a href="<?php echo $itchLink ?>">itch.io</a><br><br>
-    <a href="<?php echo $gitHubLink ?>">GitHub</a><br><br>
-<h2>Pages</h2>
-<a href="MyGames.php">My Games</a> <br><br>
-<a href="MyProjects.php">My Projects</a> <br><br>
-<a href="Form.php">My Form</a> <br><br>
+    <h2>Links</h2><br><br><br><br>
+    <a href="<?php echo $youTubeLink ?>">YouTube</a><br><br><br><br>
+    <a href="<?php echo $itchLink ?>">itch.io</a><br><br><br><br>
+    <a href="<?php echo $gitHubLink ?>">GitHub</a><br><br><br><br>
+<h2>Pages</h2><br><br><br>
+<a href="MyGames.php">My Games</a> <br><br><br><br>
+<a href="MyProjects.php">My Projects</a> <br><br><br><br>
+<a href="Form.php">My Form</a> <br><br><br><br>
 <br><br><br>
-<h2 id="WhatImDoing"></h2>
+<h2 id="WhatImDoing"></h2><br>
 <br><br>
 
 <script src="../JavaScript/HomPage.js">

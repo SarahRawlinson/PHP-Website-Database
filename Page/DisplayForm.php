@@ -27,13 +27,13 @@ else
 </head>
 <body>
 <div id="Header">
-    <h1>Display Form</h1>
-    <h2><a href="HomePage.php">Back Home</a></h2>
-    <label for="lname" >Name:</label> <label><?=$formData['iname']?></label> <br><br>
-    <label for="lemail" >Email:</label> <label><?=$formData['iemail']?></label>  <br><br>
-    <label for="lcontact" >Contact Me:</label><br><br>
-    <label><?=$formData['icontact']?></label><br><br>
-    <label for="lcomment" >Comments:</label><br><br>
+    <h1>Display Form</h1><br><br><br><br>
+    <a href="HomePage.php">Back Home</a><br><br><br><br>
+    <label for="lname" >Name:</label> <label><?=$formData['iname']?></label> <br><br><br><br>
+    <label for="lemail" >Email:</label> <label><?=$formData['iemail']?></label>  <br><br><br><br>
+    <label for="lcontact" >Contact Me:</label>
+    <label><?=$formData['icontact']?></label><br><br><br><br>
+    <label for="lcomment" >Comments:</label><br><br><br><br>
     <label><?=$formData['icomments']?></label>
 <!--    <h2>--><?php //echo $val ?><!--</h2>-->
 

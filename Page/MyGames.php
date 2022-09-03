@@ -6,13 +6,13 @@ foreach ($dir as $fileinfo) {
         $directoryPath = $fileinfo->getPath()."/".$fileinfo->getFilename()."/*";
         //echo var_dump($fileinfo->getFilename());
         $dir2 = new DirectoryIterator(dirname($directoryPath));
-        $imageHTML .= "<h2>".$fileinfo->getFilename()."</h2>";
+        $imageHTML .= "<h3>".$fileinfo->getFilename()."</h3><br><br>";
         foreach ($dir2 as $image)
         {
             if (!$image->isDot()) {
-                $filePath = $image->getPath()."/".$image->getFilename()."";
+                $filePath = $image->getPath()."/".$image->getFilename();
                 //echo $filePath;
-                $imageHTML .= '<img src="'.$filePath.'"style="height:600px;" ><br />';
+                $imageHTML .= '<img src="'.$filePath.'"style="height:600px;" ><br><br><br>';
             }
         }
 
@@ -28,9 +28,9 @@ foreach ($dir as $fileinfo) {
 </head>
 <body>
 <div id="Header">
-    <h1>My Games</h1>
-    <h2><a href="HomePage.php">Back Home</a></h2>
-    <h2>My Game Images</h2>
+    <h1>My Games</h1><br><br><br><br>
+    <a href="HomePage.php">Back Home</a><br><br><br><br>
+    <h2>My Game Images</h2><br><br><br><br>
     <?php
     echo $imageHTML;
     ?>

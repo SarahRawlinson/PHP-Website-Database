@@ -90,10 +90,10 @@ class DatabaseConnection
         $projectsHTMLString = "";
         if ($result->num_rows > 0) {
             while ($result->fetch()) {
-                $projectsHTMLString .= "<h2>$projectname</h2><br><br>";
-                $projectsHTMLString .= "<a href='$directory'>$projectname</a><br><br>";
-                $projectsHTMLString .= "<p>$keywords</p><br><br>";
-                $projectsHTMLString .= "<p>$details</p><br><br>";
+                $projectsHTMLString .= "<h3>$projectname</h3><br><br><br>";
+                $projectsHTMLString .= "<a href='$directory'>$projectname</a><br><br><br>";
+                $projectsHTMLString .= "<p>$keywords</p><br><br><br>";
+                $projectsHTMLString .= "<p>$details</p><br><br><br>";
             }
         }
         $this->Close();

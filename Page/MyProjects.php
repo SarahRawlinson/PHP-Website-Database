@@ -1,17 +1,19 @@
 <?php
+require '../Assets/PHPScripts/Tags.php';
 require '../Assets/Database/DatabaseConnection.php';
 include "../Assets/PHPScripts/Include.php";
 $dbConnect = DatabaseConnection::GetInstance();
 $ProjectPageFromDB = "";
 $selectedLanguage = "All";
+
 if (count($_POST) >0)
 {
-    if($_POST['o_language'] != "")
+    if($_POST[Tags::Language] != "")
     {
-        $_SESSION['language'] = $_POST['o_language'];
-        $selectedLanguage = $_POST['o_language'];
-        $result = $result = $dbConnect->GetProjectsByLanguage($_POST['o_language']);
-        $_SESSION['projects'] = $result;
+        $_SESSION[Tags::Language] = $_POST[Tags::Language];
+        $selectedLanguage = $_POST[Tags::Language];
+        $result = $dbConnect->GetProjectsByLanguage($_POST[Tags::Language]);
+        $_SESSION[Tags::Projects] = $result;
         echo "post selected";
 
     }
@@ -21,11 +23,11 @@ if (count($_POST) >0)
         $result = $dbConnect->GetProjectsAll();
     }
 }
-elseif ($_SESSION['projects'] != "")
+elseif ($_SESSION[Tags::Projects] != "")
 {
     echo "session selected";
-    $result = $_SESSION['projects'];
-    $selectedLanguage = $_SESSION['language'];
+    $result = $_SESSION[Tags::Projects];
+    $selectedLanguage = $_SESSION[Tags::Language];
 }
 else
 {
@@ -55,12 +57,12 @@ function Selected($value): string
 
 <body>
 <div id="Header">
-    <h1>My Projects</h1>
-    <h2><a href="HomePage.php">Back Home</a></h2>
+    <h1>My Projects</h1><br><br><br><br>
+    <a href="HomePage.php">Back Home</a><br><br><br><br>
     <div>
         <form action="MyProjects.php" method="post" >
             <label for="lbl_language" >Select Language</label>
-            <select name="o_language">
+            <select name=<?=Tags::Language?>>
                 <option <?=Selected("All")?> value="All">All</option>
                 <?php for ($i = 0; $i < Count($languages); $i++) :?>
                     <option <?=Selected($languages[$i])?> value="<?= $languages[$i]; ?>"><?= $languages[$i]; ?></option>
@@ -70,8 +72,8 @@ function Selected($value): string
 
         </form>
 
-    </div>
-    <h2>Projects</h2>
+    </div><br><br><br><br>
+    <h2>Projects</h2><br><br><br><br>
     <?php
     echo $result;
     ?>
