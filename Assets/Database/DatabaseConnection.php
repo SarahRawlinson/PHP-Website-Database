@@ -5,8 +5,8 @@ require 'User.php';
 
 class DatabaseConnection
 {
-    private static $instance;
-    public $connection = null;
+    private static DatabaseConnection $instance;
+    //public $connection = null;
 
     private static function CreateInstance(): DatabaseConnection
     {

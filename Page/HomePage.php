@@ -5,7 +5,6 @@ $itchLink = "https://sarahrawlinson.itch.io/";
 $gitHubLink = "https://github.com/SarahRawlinson";
 $name = "Sarah Rawlinson";
 //<script src="../JavaScript/HomPage.js">
-
 ?>
 
 <!DOCTYPE html>

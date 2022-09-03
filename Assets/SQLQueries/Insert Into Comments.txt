@@ -1,0 +1,36 @@
+INSERT INTO comments 
+(
+    id, 
+    title, 
+    gender, 
+    display_name, 
+    first_name, 
+    last_name, 
+    address1, 
+    address2, 
+    address3, 
+    postcode, 
+    country, 
+    email_address, 
+    phone_number, 
+    comment, 
+    contact_me
+    ) 
+VALUES 
+    (
+        NULL, 
+        'v_title', 
+        'v_gender', 
+        'v_display_name', 
+        'v_first_name', 
+        'v_last_name', 
+        'v_address1', 
+        'v_address2', 
+        'v_address3', 
+        'v_postcode', 
+        'v_country', 
+        'v_email_address', 
+        'v_phone_number', 
+        'v_comment', 
+        v_contact_me
+    );
