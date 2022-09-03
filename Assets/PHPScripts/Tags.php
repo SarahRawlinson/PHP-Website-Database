@@ -3,6 +3,7 @@
 class Tags
 {
 
-    public const Language = 'o_language';
+    public const Language = 'language';
     public const Projects = 'projects';
+    public const Feature = 'Feature';
 }

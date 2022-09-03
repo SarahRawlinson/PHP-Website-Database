@@ -1,5 +1,5 @@
 <?php
-
+require 'SQLQueries.php';
 require 'User.php';
 
 class DatabaseConnection
@@ -7,92 +7,64 @@ class DatabaseConnection
     private static $instance;
     public $connection = null;
 
-    private static function CreateInstance()
+    private static function CreateInstance(): DatabaseConnection
     {
-        //echo "Database->CreateInstance()".PHP_EOL;
         DatabaseConnection::$instance = new DatabaseConnection();
-//        update the connection string for your own database
-//        Database\DatabaseConnection::$instance->Connect(Database\User::$pass,Database\User::$user,Database\User::$host,"my_projects");
         return self::$instance;
     }
 
-    private function GetProjectsQuery(): string
+    public function GetProjectsByParameters(string $language, string $feature): string
     {
-        return "SELECT id, project_name, git_directory, details, key_words FROM project ORDER BY project_name ASC ";
-    }
-
-    private function GetProjectsQueryByLanguage($language): string
-    {
-        if (in_array($language,$this->GetLanguages(), true))
-        {
-            return "SELECT * FROM project WHERE id IN ( SELECT project_id from project_languages WHERE 
-                                language_id IN ( SELECT id from languages WHERE language = '$language' ) ); ";
-        }
-        return $this->GetProjectsQuery();
-
-    }
-    private function GetProjectsQueryByFeature($feature): string
-    {
-        if (in_array($feature,$this->GetFeatures(), true))
-        {
-            return "SELECT * FROM project WHERE id IN ( SELECT project_id from project_features WHERE 
-                                feature_id IN ( SELECT id from features WHERE feature = '$feature' ) ); ";
-        }
-        return $this->GetProjectsQuery();
-
-    }
-    private function GetFeaturesQuery(): string
-    {
-        return "SELECT feature FROM features; ";
-    }
-
-    private function GetLanguagesQuery(): string
-    {
-        return "SELECT language FROM languages; ";
+        //return SQLQueries::GetProjectsByParametersQuery($language, $feature, $this);
+        return $this->GetProjects(SQLQueries::GetProjectsByParametersQuery($language, $feature, $this));
     }
 
     public function GetLanguages(): array
     {
-        return $this->ReturnQueryResult($this->GetLanguagesQuery());
+        return $this->ReturnQueryResult(SQLQueries::GetLanguagesQuery(), 'language');
     }
 
     public function GetFeatures(): array
     {
-        return $this->ReturnQueryResult($this->GetFeaturesQuery());
+        return $this->ReturnQueryResult(SQLQueries::GetFeaturesQuery(),'feature');
     }
 
+    public function LanguageExists(string $language): bool
+    {
+        return in_array($language, $this->GetLanguages(), true);
+    }
 
-    private function RunQuery($query): void
+    public function FeatureExists(string $feature): bool
+    {
+        return in_array($feature, $this->GetFeatures(), true);
+    }
+
+    private function RunQuery(string $query): void
     {
         $this->connection->query($query);
     }
 
-    private function ReturnQueryResult($query): array
+    private function ReturnQueryResult(string $query, string $key): array
     {
         $this->Open();
         $lang_array = [];
         $result = $this->connection->query($query);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $lang_array[] = $row['language'];
+                $lang_array[] = $row[$key];
             }
         }
         $this->Close();
         return $lang_array;
-
     }
 
-    public function GetProjectsByLanguage($language): string
-    {
-        return $this->GetProjects($this->GetProjectsQueryByLanguage($language));
-    }
 
     public function GetProjectsAll(): string
     {
-        return $this->GetProjects($this->GetProjectsQuery());
+        return $this->GetProjects(SQLQueries::GetAllProjectsQuery());
     }
 
-    private function GetProjects($query): string
+    private function GetProjects(string $query): string
     {
         $this->Open();
         $tempFirstName = "";
@@ -119,7 +91,7 @@ class DatabaseConnection
         return $projectsHTMLString;
     }
 
-    private function Connect($dbPassword, $dbUserName, $dbServer, $dbName): void
+    private function Connect(string $dbPassword, string $dbUserName, string $dbServer, string $dbName): void
     {
         //echo "Database->Connect($dbPassword, $dbUserName, $dbServer , $dbName)".PHP_EOL;
 
