@@ -31,6 +31,20 @@ class DatabaseConnection
         return $this->GetProjectsQuery();
 
     }
+    private function GetProjectsQueryByFeature($feature): string
+    {
+        if (in_array($feature,$this->GetFeatures(), true))
+        {
+            return "SELECT * FROM project WHERE id IN ( SELECT project_id from project_features WHERE 
+                                feature_id IN ( SELECT id from features WHERE feature = '$feature' ) ); ";
+        }
+        return $this->GetProjectsQuery();
+
+    }
+    private function GetFeaturesQuery(): string
+    {
+        return "SELECT feature FROM features; ";
+    }
 
     private function GetLanguagesQuery(): string
     {
@@ -40,6 +54,11 @@ class DatabaseConnection
     public function GetLanguages(): array
     {
         return $this->ReturnQueryResult($this->GetLanguagesQuery());
+    }
+
+    public function GetFeatures(): array
+    {
+        return $this->ReturnQueryResult($this->GetFeaturesQuery());
     }
 
 
