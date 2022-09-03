@@ -19,18 +19,18 @@ INSERT INTO comments
 VALUES 
     (
         NULL, 
-        'v_title', 
-        'v_gender', 
-        'v_display_name', 
-        'v_first_name', 
-        'v_last_name', 
-        'v_address1', 
-        'v_address2', 
-        'v_address3', 
-        'v_postcode', 
-        'v_country', 
-        'v_email_address', 
-        'v_phone_number', 
-        'v_comment', 
-        v_contact_me
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?
     );

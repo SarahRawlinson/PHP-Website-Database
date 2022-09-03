@@ -1,22 +1,33 @@
 <?php
-////include __DIR__.'Assets\SQLQueries\Insert Into Comments.txt';
-//require_once 'vendor/autoload.php';
-//// use the factory to create a Faker\Generator instance
-//$faker = Faker\Factory::create();
-//// generate data by calling methods
-//echo $faker->name()."\n";
-//// 'Vince Sporer'
-//echo $faker->email()."\n";
-//// 'walter.sophia@hotmail.com'
-//echo $faker->realTextBetween($minNbChars = 30, $maxNbChars = 500, $indexSize = 2)."\n";
-//echo $faker->catchPhrase()."\n";
-//echo $faker->bs()."\n";
-//// 'Numquam ut mollitia at consequuntur inventore dolorem.'
+include "Assets/PHPScripts/Include.php";
+require 'Assets/PHPScripts/Tags.php';
+require 'Assets/Database/DatabaseConnection.php';
+require_once 'vendor/autoload.php';
+$faker = Faker\Factory::create();
+$dbConnect = DatabaseConnection::GetInstance();
+//0 male, 1 female
+$b_gender = rand(0,1);
+$sex = $b_gender==1?'female':'male';
+$dbConnect->AddComment
+(
+    $title=$b_gender==1?$faker->titleFemale():$faker->titleMale(),
+    $gender=$sex,
+    $display_name=$faker->userName(),
+    $first_name=$faker->name($sex),
+    $last_name=$faker->lastName(),
+    $address1= $faker->streetAddress(),
+    $address2= $faker->streetName(),
+    $address3= $faker->city(),
+    $postcode= $faker->postcode(),
+    $country= $faker->country(),
+    $email_address = $faker->email(),
+    $phone_number = $faker->phoneNumber(),
+    $comment = $faker->realTextBetween($minNbChars = 30, $maxNbChars = 500, $indexSize = 2)."\n",
+    $contact_me = rand(0,1)
+);
 
-$myFile = fopen("Assets/SQLQueries/Insert Into Comments.txt", "r") or die("Unable to open file!");;
-$textString = "";
-while(!feof($myFile)) {
-    $textString .= fgetc($myFile);
-}
-echo $textString;
-fclose($myFile);
+
+
+
+
+?>

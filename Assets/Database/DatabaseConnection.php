@@ -6,8 +6,44 @@ require 'User.php';
 class DatabaseConnection
 {
     private static DatabaseConnection $instance;
-    //public $connection = null;
+    public $connection;
 
+    private function GetQueryFromTextFile($text) : string
+    {
+        $myFile = fopen($text, "r") or die("Unable to open file!");;
+        $textString = "";
+        while(!feof($myFile)) {
+            $textString .= fgetc($myFile);
+        }
+        fclose($myFile);
+        return $textString;
+    }
+    
+    public function AddComment($title, $gender, $display_name, $first_name, $last_name, $address1, $address2, 
+                               $address3, $postcode, $country, $email_address, $phone_number, $comment, $contact_me)
+    {
+        $query = $this->GetQueryFromTextFile("Assets/SQLQueries/Insert Into Comments.txt");
+        $this->Open();
+        $result = $this->connection->prepare($query);
+        $result->bind_param("sssssssssssssi", 
+            $title, 
+            $gender, 
+            $display_name, 
+            $first_name, 
+            $last_name, 
+            $address1, 
+            $address2, 
+            $address3, 
+            $postcode, 
+            $country, 
+            $email_address, 
+            $phone_number, 
+            $comment, 
+            $contact_me);
+        $result->execute();
+        $this->Close();
+    }
+    
     private static function CreateInstance(): DatabaseConnection
     {
         DatabaseConnection::$instance = new DatabaseConnection();
