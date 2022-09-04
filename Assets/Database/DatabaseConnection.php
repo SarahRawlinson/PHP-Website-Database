@@ -25,22 +25,29 @@ class DatabaseConnection
         $query = $this->GetQueryFromTextFile("Assets/SQLQueries/Insert Into Comments.txt");
         $this->Open();
         $result = $this->connection->prepare($query);
-        $result->bind_param("sssssssssssssi", 
-            $title, 
-            $gender, 
-            $display_name, 
-            $first_name, 
-            $last_name, 
-            $address1, 
-            $address2, 
-            $address3, 
-            $postcode, 
-            $country, 
-            $email_address, 
-            $phone_number, 
-            $comment, 
-            $contact_me);
-        $result->execute();
+        try {
+            $result->bind_param("sssssssssssssi",
+                $title,
+                $gender,
+                $display_name,
+                $first_name,
+                $last_name,
+                $address1,
+                $address2,
+                $address3,
+                $postcode,
+                $country,
+                $email_address,
+                $phone_number,
+                $comment,
+                $contact_me);
+            $result->execute();
+        }
+        catch(PDOException $e)
+        {
+            echo "Error: " . $e->getMessage();
+        }
+        
         $this->Close();
     }
     
