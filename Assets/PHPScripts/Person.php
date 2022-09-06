@@ -1,4 +1,5 @@
 <?php
+include "IPerson.php";
 
 class Person implements IPerson
 {
@@ -14,11 +15,13 @@ class Person implements IPerson
     private string $title;
     private string $gender;
     private string $user_name;
+    private string $phone_number;
+    private string $postcode;
 
     public function __construct(string $firstName, string $lastName, DateTime $dateOfBirth, string $email,
                                 string $addressNumber,string $addressStreetName, string $addressCity, 
                                 string $addressRegion, string $addressCountry, string $title, string $gender, 
-                                string $userName)
+                                string $userName, string $postcode, string $phoneNumber)
     {
         $this->first_name=$firstName;
         $this->last_name=$lastName;
@@ -32,6 +35,8 @@ class Person implements IPerson
         $this->title=$title;
         $this->gender = $gender;
         $this->user_name=$userName;
+        $this->phone_number=$phoneNumber;
+        $this->postcode=$postcode;
     }
 
     public function GetTile(): string
@@ -105,5 +110,15 @@ class Person implements IPerson
     public function GetUserName(): string
     {
         return $this->user_name;
+    }
+
+    public function GetPhoneNumber(): string
+    {
+        return $this->phone_number;
+    }
+
+    public function GetPostCode(): string
+    {
+        return $this->postcode;
     }
 }

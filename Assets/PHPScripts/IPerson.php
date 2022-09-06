@@ -16,4 +16,6 @@ interface IPerson
     public function GetDateOfBirth() : DateTime;
     public function GetGender() : string;
     public function GetUserName() : string;
+    public function GetPhoneNumber() : string;
+    public function GetPostCode() : string;
 }
