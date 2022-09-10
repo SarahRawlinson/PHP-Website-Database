@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\Assets\CSVFiles\EmailDomains.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Assets\CSVFiles\EmailTopLevelDomain.csv">
           <value>
             <Attribute>
@@ -24,14 +31,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\Assets\CSVFiles\emailHosts.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Assets\TextFiles\UKPostcodes.csv">
+        <entry key="\Assets\CSVFiles\UKPostcodes.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
