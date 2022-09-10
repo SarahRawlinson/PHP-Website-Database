@@ -44,7 +44,7 @@ class AIPerson implements IPerson
         //$country = $faker->country();
         $phone_number = $faker->phoneNumber();
         $this->person = new Person($first_name, $last_name, $date_of_birth,$email_address,$address_number,
-            $address_street,$address_city,$address_region,$country,$title,$sex,$username, $phone_number, $postcode);
+            $address_street,$address_city,$address_region,$country,$title,$sex,$username, $postcode, $phone_number);
     }
     
     static function GenerateUserName($firstName, $LastName, $DateOfBirth, $title): string

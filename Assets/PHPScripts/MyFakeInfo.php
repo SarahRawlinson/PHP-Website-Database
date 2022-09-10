@@ -65,12 +65,19 @@ class MyFakeInfo
         $locations = CSVReader::GetLocations();
         $location = $locations[rand(0, count($locations) - 1)];
         $sectors = CSVReader::GetPostcodeSectors();
-        $units = CSVReader::GetPostcodeUnits();
-        $postcode = $location['postcode'];
-        $sectors = array_values(preg_grep("/^$postcode/i",$sectors));
+        try {
+            $postcode = $location['postcode'];            
+            $sectors = array_values(preg_grep("/^$postcode/i",$sectors));            
+        }
+        catch (ErrorException $e)
+        {
+            echo $e;
+        }        
+        $units = CSVReader::GetPostcodeUnits();        
         $sector = $sectors[rand(0, count($sectors) - 1)];
         $unit = $units[rand(0, count($units) - 1)];
         $location['postcode'] = $sector.$unit;
+        
         return $location;
     }
     

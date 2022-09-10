@@ -13,7 +13,7 @@ class ReadTextFiles
         $lines = [];
         while (!feof($myFile))
         {
-            $s = fgets($myFile);
+            $s = trim(fgets($myFile), $characters = " \n\r\t\v\x00");
             //echo  $s;
             $lines[] = $s;
         }
