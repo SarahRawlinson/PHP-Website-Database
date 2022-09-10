@@ -1,18 +1,19 @@
 <?php
 //require_once '../../vendor/autoload.php';
 include "Person.php";
+include "MyFakeInfo.php";
+
 class AIPerson implements IPerson
 {
+    static int $MaxAge = 100;
+    static int $MinAge = 10;
     private IPerson $person;
-    public static array $email_domains = ['hotmail', 'yahoo', 'myself', 'gmail', 'aol', 'free', 'live', 'libero',
-    'ntlworld', 'arcor', 'planet', 'gmx', 'mail', 'freenet', 'web', 'msn', 'comcast', 'outlook',
-    'uol', 'bol', 'cox', 'sbcglobal', 'sfr', 'verizon', 'ig', 'terra', 'bigpond', 'googlemail',
-    'ymail', 'rocketmail', 'charter'];
-    public static array $email_append = ['.com', '.co.uk', '.org', '.fr', '.de', '.it', '.com.br', '.co.in', '.es', '.nl',
-    '.com.au', '.ca', '.ru', 'co.id'];
-    static $MaxAge = 100;
-    static $MinAge = 10;
-    private $faker;
+
+    private \Faker\Generator $faker;
+
+    /**
+     * @throws Exception
+     */
     public function __construct()
     {
         $faker = Faker\Factory::create();
@@ -20,23 +21,27 @@ class AIPerson implements IPerson
         $b_gender = rand(0, 1);
         $sex = $b_gender == 1 ? 'female' : 'male';
         //$company = $faker->company();
-        $first_name = $faker->name($sex);
-        $last_name = $faker->lastName();
-        $date_of_birth= $this->GetRandomDate();
+        $first_name = MyFakeInfo::GetFirstName($sex);        
+        $last_name = MyFakeInfo::GetLastName();
+        //$last_name = $faker->lastName();
+        $date_of_birth= MyFakeInfo::GetRandomDate(self::$MinAge, self::$MaxAge);
         $title = $b_gender == 1 ? $faker->titleFemale() : $faker->titleMale();
         $username = self::GenerateUserName($first_name, $last_name, $date_of_birth, $title);
         $display_name = $username . rand(0, 100000);
-        $domain = array_rand(array_flip(AIPerson::$email_domains)) . '';
-        $append = array_rand(array_flip(AIPerson::$email_append)) . '';
         $email_address = rand(0, 1) == 1 ? $display_name : ($first_name . "." . $last_name);
-        $email_address .= "@" . $domain . $append;
+        $email_address .= MyFakeInfo::GetEmailDomain();
         $email_address = str_replace(" ", rand(0, 1) == 1 ? "" : ".", $email_address);
         $address_number = $faker->buildingNumber();
         $address_street = $faker->streetName();
-        $address_city = $faker->city();
-        $address_region = "";        
-        $postcode = $faker->postcode();
-        $country = $faker->country();
+        $location = MyFakeInfo::GetRandomLocation();
+        $address_city = $location['town'];
+        $address_region = $location['region'];
+        $postcode = $location['postcode'];
+        $country = $location['country_string'];
+        //$address_city = $faker->city();
+        //$address_region = "";        
+        //$postcode = $faker->postcode();
+        //$country = $faker->country();
         $phone_number = $faker->phoneNumber();
         $this->person = new Person($first_name, $last_name, $date_of_birth,$email_address,$address_number,
             $address_street,$address_city,$address_region,$country,$title,$sex,$username, $phone_number, $postcode);
@@ -132,16 +137,7 @@ class AIPerson implements IPerson
         return $this->person->GetUserName();
     }
 
-    private function GetRandomDate() : DateTime
-    {
-        $mn = AIPerson::$MinAge;
-        $mx = AIPerson::$MaxAge;
-        $maxDate = new DateTime("-{$mx} years");
-        $minDate = new DateTime("-{$mn} years");
-        $int = rand($minDate->getTimestamp(), $maxDate->getTimestamp());
-        $date = new DateTime(date('d-m-Y',$int));
-        return $date;
-    }
+    
 
     public function GetPhoneNumber(): string
     {
